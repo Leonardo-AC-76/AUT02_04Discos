@@ -1,0 +1,17 @@
+﻿@model AUT02_04Discos.Models.Artist
+
+@{
+    ViewData["Title"] = "Discos";
+}
+<!--Añadir listado de discos-->
+
+<h1>Albums del Artista</h1>
+
+<ul>
+    @foreach (var item in Model.Albums)
+    {
+        <li>@item.Title</li>
+    }
+</ul>
+
+<input type="button" value="Volver al listado" class="btn btn-secondary" onClick="history.go(-1);">

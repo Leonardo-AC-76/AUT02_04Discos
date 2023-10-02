@@ -1,0 +1,48 @@
+﻿@model AUT02_04Discos.Models.Customer
+
+@{
+    ViewData["Title"] = "Facturas";
+}
+
+<h1>Facturas</h1>
+
+<h2>Cliente: @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Fecha
+            </th>
+            <th>
+                Dirección de facturación
+            </th>
+
+            <th>
+                Precio
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Invoices)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillingAddress)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <h3>Total: @Model.Invoices.Sum(x => x.Total)</h3>
+    <a asp-action="Index">Volver a la lista</a>
+</div>
+

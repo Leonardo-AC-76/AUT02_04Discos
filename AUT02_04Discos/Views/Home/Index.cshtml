@@ -1,0 +1,50 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Discografia</h1>
+
+<!--usuarios validados-->
+@if (SignInManager.IsSignedIn(User))
+{
+
+    @if ((User.IsInRole("Comercial")))
+    {
+        <p>Bienvenido Comercial</p>
+    }
+    else
+    {
+        if ((User.IsInRole("Admin, User, Manager")))
+        {
+            <div class="grid-container">
+                <div class="card" style="width: 18rem;">
+                    <img src="img/piano-317026_1280.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Albums</h5>
+                        <p class="card-text">Consulta la colección de albums de nuestro catalogo.</p>
+                        <a class="btn btn-primary" asp-controller="Albums" asp-action="Index">Ver Album</a>
+                    </div>
+                </div>
+
+                <div class="card" style="width: 18rem;">
+                    <img src="img/israel-1121502_1280.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Artistas</h5>
+                        <p class="card-text">Consulta la colección de artistas de nuestro catalogo.</p>
+                        <a class="btn btn-primary" asp-controller="Artists" asp-action="Index">Ver Artista</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    
+}
+else
+{
+    <p>Entra y descubre la mejor música</p>
+}
